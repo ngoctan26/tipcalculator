@@ -100,6 +100,9 @@
                                     <segment title="Third"/>
                                 </segments>
                                 <color key="tintColor" red="0.3843137254901961" green="0.58431372549019611" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="onSegButtonClicked:" destination="BYZ-38-t0r" eventType="valueChanged" id="9B3-cH-x9h"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -128,6 +131,12 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="hjk-Vw-jJn">
                         <barButtonItem key="rightBarButtonItem" title="Setting" id="aOD-UP-pVb"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="labelTipResult" destination="VWj-Iv-pbP" id="kB7-Ey-g93"/>
+                        <outlet property="labelTotalBill" destination="NEg-bh-qJW" id="x0I-Ou-Jrr"/>
+                        <outlet property="segButtonTipPercent" destination="cBS-hx-kKw" id="Rwc-p7-AvB"/>
+                        <outlet property="textFieldInputBill" destination="mkI-aF-F5x" id="4ga-ya-WV7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
