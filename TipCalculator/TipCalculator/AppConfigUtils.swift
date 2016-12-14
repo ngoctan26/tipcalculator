@@ -9,5 +9,16 @@
 import Foundation
 
 class AppConfigUtils {
+    static func loadSetting(key: String) -> Any {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: key) as Any
+    }
     
+    static func saveSetting(configurations: [String : Any]) {
+        let defaults = UserDefaults.standard
+        for (key, object) in configurations {
+            defaults.set(object, forKey: key)
+        }
+        defaults.synchronize()
+    }
 }

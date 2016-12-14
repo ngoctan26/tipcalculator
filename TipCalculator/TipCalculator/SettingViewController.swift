@@ -8,7 +8,10 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingViewController: UITableViewController {
+
+    // Mark properties
+    let SECTION_HEADERS = ["Percent", "Theme"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +24,26 @@ class SettingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return SECTION_HEADERS.count
     }
-    */
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return SECTION_HEADERS[section]
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var rowInSection = 0
+        switch section {
+        case 0:
+            rowInSection = 3
+        case 1:
+            rowInSection = 1
+        default:
+            rowInSection = 0
+        }
+        return rowInSection
+    }
+
+    
 }
