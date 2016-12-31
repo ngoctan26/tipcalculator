@@ -150,32 +150,43 @@
         <scene sceneID="OPQ-QP-n2X">
             <objects>
                 <viewController id="kEk-ad-jrs" customClass="SettingViewController" customModule="TipCalculator" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="fkd-4v-pQu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="150" sectionHeaderHeight="18" sectionFooterHeight="18" id="fkd-4v-pQu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nFO-of-67t">
-                                <rect key="frame" x="0.0" y="56" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="themeCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="nFO-of-67t" customClass="SettingThemeTableViewCell" customModule="TipCalculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nFO-of-67t" id="dVe-AI-jjm">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-IS-6mR">
+                                            <rect key="frame" x="250" y="24" width="51" height="31"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="DarkBackground" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rfq-Q8-GdH">
+                                            <rect key="frame" x="24" y="24" width="164" height="31"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4Dc-IS-6mR" firstAttribute="top" secondItem="dVe-AI-jjm" secondAttribute="topMargin" constant="16" id="1pe-I0-k6H"/>
+                                        <constraint firstItem="4Dc-IS-6mR" firstAttribute="leading" secondItem="dVe-AI-jjm" secondAttribute="leadingMargin" constant="242" id="25r-r5-qnV"/>
+                                        <constraint firstItem="rfq-Q8-GdH" firstAttribute="leading" secondItem="dVe-AI-jjm" secondAttribute="leadingMargin" constant="16" id="BPX-Z1-Xbl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="rfq-Q8-GdH" secondAttribute="bottom" constant="16" id="T3S-0g-RFZ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4Dc-IS-6mR" secondAttribute="bottom" constant="16" id="fhn-rV-0iR"/>
+                                        <constraint firstItem="rfq-Q8-GdH" firstAttribute="top" secondItem="dVe-AI-jjm" secondAttribute="topMargin" constant="16" id="v8X-X9-DhK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BlQ-3A-wL2">
-                                <rect key="frame" x="0.0" y="100" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BlQ-3A-wL2" id="U4X-Py-b69">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tTA-BE-Tz6">
-                                <rect key="frame" x="0.0" y="144" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tTA-BE-Tz6" id="kBi-xD-oyQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -185,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0M3-G3-sq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="43"/>
+            <point key="canvasLocation" x="1771.875" y="42.25352112676056"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yCM-UT-POe">
@@ -204,24 +215,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxJ-0F-7sF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="127" y="44"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="PJi-GX-bHC">
-            <objects>
-                <viewController id="cPo-ep-QvO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8de-Og-Gbh"/>
-                        <viewControllerLayoutGuide type="bottom" id="PEL-Q9-baX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="isy-9z-ycg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="On4-AM-ewD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3336" y="-16"/>
         </scene>
     </scenes>
 </document>
