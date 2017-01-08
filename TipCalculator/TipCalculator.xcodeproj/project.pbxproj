@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		860E7DE31E1754780057A25B /* SettingThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860E7DE21E1754780057A25B /* SettingThemeTableViewCell.swift */; };
+		860E7DE51E1769780057A25B /* PercentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860E7DE41E1769780057A25B /* PercentTableViewCell.swift */; };
+		862D1AAC1E1AB44A00C75DA1 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D1AAB1E1AB44A00C75DA1 /* Setting.swift */; };
+		867865AC1E21674200D47B5F /* SettingControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867865AB1E21674200D47B5F /* SettingControllerDelegate.swift */; };
 		86B0E0871DFD3E5A00F5BA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0E0861DFD3E5A00F5BA58 /* AppDelegate.swift */; };
 		86B0E08C1DFD3E5A00F5BA58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B0E08A1DFD3E5A00F5BA58 /* Main.storyboard */; };
 		86B0E08E1DFD3E5A00F5BA58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B0E08D1DFD3E5A00F5BA58 /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		860E7DE21E1754780057A25B /* SettingThemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingThemeTableViewCell.swift; sourceTree = "<group>"; };
+		860E7DE41E1769780057A25B /* PercentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentTableViewCell.swift; sourceTree = "<group>"; };
+		862D1AAB1E1AB44A00C75DA1 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		867865AB1E21674200D47B5F /* SettingControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingControllerDelegate.swift; sourceTree = "<group>"; };
 		86B0E0831DFD3E5A00F5BA58 /* TipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B0E0861DFD3E5A00F5BA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B0E08B1DFD3E5A00F5BA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		862D1AAA1E1AB43200C75DA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				862D1AAB1E1AB44A00C75DA1 /* Setting.swift */,
+				867865AB1E21674200D47B5F /* SettingControllerDelegate.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		86B0E07A1DFD3E5A00F5BA58 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +75,7 @@
 		86B0E0851DFD3E5A00F5BA58 /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				862D1AAA1E1AB43200C75DA1 /* Model */,
 				86B0E09D1DFD46C800F5BA58 /* Utils */,
 				86B0E0981DFD461C00F5BA58 /* View */,
 				86B0E0861DFD3E5A00F5BA58 /* AppDelegate.swift */,
@@ -77,6 +93,7 @@
 				86B0E0991DFD466000F5BA58 /* TipViewController.swift */,
 				86B0E09B1DFD46BF00F5BA58 /* SettingViewController.swift */,
 				860E7DE21E1754780057A25B /* SettingThemeTableViewCell.swift */,
+				860E7DE41E1769780057A25B /* PercentTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -163,10 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				860E7DE31E1754780057A25B /* SettingThemeTableViewCell.swift in Sources */,
+				860E7DE51E1769780057A25B /* PercentTableViewCell.swift in Sources */,
 				86B0E09A1DFD466000F5BA58 /* TipViewController.swift in Sources */,
 				86B0E0871DFD3E5A00F5BA58 /* AppDelegate.swift in Sources */,
+				862D1AAC1E1AB44A00C75DA1 /* Setting.swift in Sources */,
 				86B0E09C1DFD46BF00F5BA58 /* SettingViewController.swift in Sources */,
 				86B0E09F1DFD46EE00F5BA58 /* AppConfigUtils.swift in Sources */,
+				867865AC1E21674200D47B5F /* SettingControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

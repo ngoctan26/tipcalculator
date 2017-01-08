@@ -20,8 +20,16 @@ class TipViewController: UIViewController {
     }
     
     // Mark: properties
-    var tipPercents: [String] = ["15", "20", "25"]
+    var tipPercents: [Int] = Setting.PERCENT_SETTING_DEFAULT_VALUE
     let bilMaxLength = 9
+    
+    // Mark: actions
+    @IBAction func unwindTipView(sender: UIStoryboardSegue) {
+        if sender.source is SettingViewController {
+            updateSetting()
+            updateScreen()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +47,21 @@ class TipViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func updateSetting() {
+        let isDarkTheme = AppConfigUtils.loadSetting(key: Setting.THEME_SETTING_KEY, defaultValue: false) as! Bool
+        self.view.backgroundColor = isDarkTheme ? Setting.DARK_COLOR : Setting.BRIGHT_COLOR
+        tipPercents = AppConfigUtils.loadSetting(key: Setting.PERCENT_SETTING_KEY, defaultValue: Setting.PERCENT_SETTING_DEFAULT_VALUE) as! [Int]
+        for i in 0...2 {
+            segButtonTipPercent.setTitle(String(tipPercents[i]) + "%", forSegmentAt: i)
+        }
+    }
 
     func initView() {
+        // Load settings
+        updateSetting()
         textFieldInputBill.text = formatNormalNumber(inputNum: 0)
         // Set segment button title
         textFieldInputBill.keyboardType = UIKeyboardType.numberPad
-        for i in 0...2 {
-            segButtonTipPercent.setTitle(tipPercents[i] + "%", forSegmentAt: i)
-        }
         // Set text field change listener
         textFieldInputBill.addTarget(self, action: #selector(onTextFieldChanged(textField:)), for: UIControlEvents.editingChanged)
     }
@@ -71,7 +86,7 @@ class TipViewController: UIViewController {
         textFieldInputBill.text = formatNormalNumber(inputNum: Int(hanldeAmountInput)!)
         let billAmount: Float = Float(hanldeAmountInput)!
         let selectedPercentIndex = segButtonTipPercent.selectedSegmentIndex
-        let percent = Float(tipPercents[selectedPercentIndex])
+        let percent = Float(String(tipPercents[selectedPercentIndex]))
         let tipAmount = billAmount * percent! / 100
         let totalBill = tipAmount + billAmount
         // Show tip and total bill

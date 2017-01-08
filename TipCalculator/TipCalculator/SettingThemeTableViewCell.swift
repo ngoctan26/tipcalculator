@@ -9,6 +9,15 @@
 import UIKit
 
 class SettingThemeTableViewCell: UITableViewCell {
+    var settingController: SettingControllerDelegate? = nil
+    @IBOutlet weak var swithTheme: UISwitch!
+    
+    // View references
+    @IBAction func onSwitchChangeValue(_ sender: UISwitch) {
+        settingController?.updateTheme(sender.isOn)
+    }
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,4 +30,5 @@ class SettingThemeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    
 }
