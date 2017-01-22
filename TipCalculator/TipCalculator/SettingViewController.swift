@@ -12,7 +12,7 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
     // Mark properties
     let THEM_CELL_REUSE_IDENTIFIER = "themeCell"
     let PERCENT_CELL_REUSE_IDENTIFIER = "percentCell"
-    let SECTION_HEADERS = ["Theme", "Percent"]
+    let SECTION_HEADERS = ["Theme", "Percent", "Alert"]
     var isThemeDarkEnable = Setting.THEME_SETTING_DEFAULT_VALUE
     let percentOptionLabel = ["Option 1", "Option 2", "Option 3"]
     var percentValue = Setting.PERCENT_SETTING_DEFAULT_VALUE
@@ -68,6 +68,8 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
             rowInSection = 1
         case 1:
             rowInSection = 3
+        case 2:
+            rowInSection = 2
         default:
             rowInSection = 0
         }
@@ -99,6 +101,8 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
             cell.optionLabel.text = percentOptionLabel[indexPath.row]
             cell.inputPercentTextField.text = String(percentValue[indexPath.row])
             return cell
+        
+            
         default:
             return UITableViewCell()
         }

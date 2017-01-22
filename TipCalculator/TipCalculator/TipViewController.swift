@@ -33,8 +33,12 @@ class TipViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMoveBackToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
         initView()
         updateScreen()
+        updateHistoryValueToScreen()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +49,34 @@ class TipViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func appMovedToBackground(_ notification: NSNotification) {
+        print("application go to background")
+        var saveValue: [String : Any] = [:]
+        saveValue[Setting.DATE_STORE_KEY] = Date()
+        saveValue[Setting.HISTORY_VALUE_KEY] = textFieldInputBill.text
+        AppConfigUtils.saveSetting(configurations: saveValue)
+    }
+
+    func appMoveBackToForeground(_ notification: NSNotification) {
+        updateHistoryValueToScreen()
+    }
+
+    func updateHistoryValueToScreen() {
+        let currentDate = Date()
+        let previousDate = AppConfigUtils.loadSetting(key: Setting.DATE_STORE_KEY, defaultValue: nil)
+        if previousDate != nil {
+            var prDate = previousDate as! Date
+            prDate = prDate.addingTimeInterval(10 * 60)
+            if prDate.compare(currentDate) == ComparisonResult.orderedAscending {
+                textFieldInputBill.text = "0"
+            } else {
+                let previousValue = AppConfigUtils.loadSetting(key: Setting.HISTORY_VALUE_KEY, defaultValue: "0")
+                textFieldInputBill.text = previousValue as! String?
+            }
+            updateScreen()
+        }
     }
     
     func updateSetting() {
@@ -109,4 +141,5 @@ class TipViewController: UIViewController {
         formatter.minimumIntegerDigits = 0
         return formatter.string(from: NSNumber(value: inputNum))!
     }
+    
 }

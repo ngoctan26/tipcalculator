@@ -9,7 +9,7 @@
 import Foundation
 
 class AppConfigUtils {
-    static func loadSetting(key: String, defaultValue: Any) -> Any {
+    static func loadSetting(key: String, defaultValue: Any?) -> Any? {
         let defaults = UserDefaults.standard
         guard let returnValue = defaults.object(forKey: key) else {
             return defaultValue
