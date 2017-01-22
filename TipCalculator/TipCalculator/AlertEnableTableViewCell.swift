@@ -9,9 +9,15 @@
 import UIKit
 
 class AlertEnableTableViewCell: UITableViewCell {
+    var settingController: SettingControllerDelegate? = nil
     //View references
+    @IBOutlet weak var switchAlert: UISwitch!
     
-
+    @IBAction func switchValueChange(_ sender: UISwitch) {
+        settingController?.updateAlertSwitch(value: sender.isOn)
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

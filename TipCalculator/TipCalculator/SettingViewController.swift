@@ -10,12 +10,16 @@ import UIKit
 
 class SettingViewController: UITableViewController, SettingControllerDelegate {
     // Mark properties
-    let THEM_CELL_REUSE_IDENTIFIER = "themeCell"
+    let THEME_CELL_REUSE_IDENTIFIER = "themeCell"
     let PERCENT_CELL_REUSE_IDENTIFIER = "percentCell"
+    let ALERT_ENABLE_CELL_REUSE_IDENTIFIER = "alertEnableCell"
+    let ALERT_INFO_REUSE_IDENTIFIER = "alertInfoCell"
     let SECTION_HEADERS = ["Theme", "Percent", "Alert"]
     var isThemeDarkEnable = Setting.THEME_SETTING_DEFAULT_VALUE
     let percentOptionLabel = ["Option 1", "Option 2", "Option 3"]
     var percentValue = Setting.PERCENT_SETTING_DEFAULT_VALUE
+    var isAlertEnable = false
+    var alerLimation = Setting.ALERT_LIMIATION_DEFAULT_VALUE
     
     // View references
     @IBOutlet weak var doneBtn: UIBarButtonItem!
@@ -90,7 +94,7 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier:  THEM_CELL_REUSE_IDENTIFIER, for: indexPath) as! SettingThemeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier:  THEME_CELL_REUSE_IDENTIFIER, for: indexPath) as! SettingThemeTableViewCell
             cell.settingController = self
             cell.swithTheme.setOn(isThemeDarkEnable, animated: false)
             return cell
@@ -101,7 +105,21 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
             cell.optionLabel.text = percentOptionLabel[indexPath.row]
             cell.inputPercentTextField.text = String(percentValue[indexPath.row])
             return cell
-        
+        case 2:
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ALERT_ENABLE_CELL_REUSE_IDENTIFIER, for: indexPath) as! AlertEnableTableViewCell
+                cell.settingController = self
+                cell.switchAlert.setOn(isAlertEnable, animated: false)
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ALERT_INFO_REUSE_IDENTIFIER, for: indexPath) as! AlertInfoTableViewCell
+                cell.settingController = self
+                cell.inputLimitationTextField.text = String(alerLimation)
+                return cell
+            default:
+                return UITableViewCell()
+            }
             
         default:
             return UITableViewCell()
@@ -109,15 +127,19 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
     }
     
     func loadPreviousSettingToView() {
-        isThemeDarkEnable = AppConfigUtils.loadSetting(key: "dark_theme", defaultValue: Setting.THEME_SETTING_DEFAULT_VALUE) as! Bool
+        isThemeDarkEnable = AppConfigUtils.loadSetting(key: Setting.THEME_SETTING_KEY, defaultValue: Setting.THEME_SETTING_DEFAULT_VALUE) as! Bool
         self.view.backgroundColor = isThemeDarkEnable ? Setting.DARK_COLOR : Setting.BRIGHT_COLOR
-        percentValue = AppConfigUtils.loadSetting(key: "percent_value", defaultValue: Setting.PERCENT_SETTING_DEFAULT_VALUE) as! [Int]
+        percentValue = AppConfigUtils.loadSetting(key: Setting.PERCENT_SETTING_KEY, defaultValue: Setting.PERCENT_SETTING_DEFAULT_VALUE) as! [Int]
+        isAlertEnable = AppConfigUtils.loadSetting(key: Setting.ALERT_ENABLE_KEY, defaultValue: false) as! Bool
+        alerLimation = AppConfigUtils.loadSetting(key: Setting.ALERT_LIMITATION_KEY, defaultValue: Setting.ALERT_LIMIATION_DEFAULT_VALUE) as! Int
     }
     
     func getCurrentSetting() -> [String : Any] {
         var configurations: [String : Any] = [:]
         configurations[Setting.THEME_SETTING_KEY] = isThemeDarkEnable
         configurations[Setting.PERCENT_SETTING_KEY] = percentValue
+        configurations[Setting.ALERT_ENABLE_KEY] = isAlertEnable
+        configurations[Setting.ALERT_LIMITATION_KEY] = alerLimation
         return configurations
     }
     
@@ -128,5 +150,13 @@ class SettingViewController: UITableViewController, SettingControllerDelegate {
     
     func updatePercentSetting(percentUpdate: Int, position: Int) {
         percentValue[position] = percentUpdate
+    }
+
+    func updateAlertSwitch(value: Bool) {
+        isAlertEnable = value
+    }
+
+    func updateAlertInfo(value: String) {
+        alerLimation = Int(value)!
     }
 }

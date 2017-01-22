@@ -11,4 +11,6 @@ import Foundation
 protocol SettingControllerDelegate {
     func updateTheme(_ value: Bool)
     func updatePercentSetting(percentUpdate: Int, position: Int)
+    func updateAlertSwitch(value: Bool)
+    func updateAlertInfo(value: String)
 }

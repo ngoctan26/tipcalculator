@@ -14,6 +14,7 @@ class TipViewController: UIViewController {
     @IBOutlet weak var labelTipResult: UILabel!
     @IBOutlet weak var labelTotalBill: UILabel!
     @IBOutlet weak var segButtonTipPercent: UISegmentedControl!
+    var alertController: UIAlertController = UIAlertController()
     
     @IBAction func onSegButtonClicked(_ sender: Any) {
         updateScreen()
@@ -22,6 +23,8 @@ class TipViewController: UIViewController {
     // Mark: properties
     var tipPercents: [Int] = Setting.PERCENT_SETTING_DEFAULT_VALUE
     let bilMaxLength = 9
+    var isAlertEnable = false
+    var alertLimiation = Setting.ALERT_LIMIATION_DEFAULT_VALUE
     
     // Mark: actions
     @IBAction func unwindTipView(sender: UIStoryboardSegue) {
@@ -37,6 +40,7 @@ class TipViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         notificationCenter.addObserver(self, selector: #selector(appMoveBackToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
         initView()
+        initAlertController()
         updateScreen()
         updateHistoryValueToScreen()
     }
@@ -86,16 +90,28 @@ class TipViewController: UIViewController {
         for i in 0...2 {
             segButtonTipPercent.setTitle(String(tipPercents[i]) + "%", forSegmentAt: i)
         }
+        isAlertEnable = AppConfigUtils.loadSetting(key: Setting.ALERT_ENABLE_KEY, defaultValue: false) as! Bool
+        alertLimiation = AppConfigUtils.loadSetting(key: Setting.ALERT_LIMITATION_KEY, defaultValue: Setting.ALERT_LIMIATION_DEFAULT_VALUE) as! Int
     }
 
     func initView() {
         // Load settings
         updateSetting()
         textFieldInputBill.text = formatNormalNumber(inputNum: 0)
+        textFieldInputBill.becomeFirstResponder()
         // Set segment button title
         textFieldInputBill.keyboardType = UIKeyboardType.numberPad
         // Set text field change listener
         textFieldInputBill.addTarget(self, action: #selector(onTextFieldChanged(textField:)), for: UIControlEvents.editingChanged)
+    }
+
+    func initAlertController() {
+        alertController = UIAlertController(title: "Out of money", message: "Your tip is over the limitation.", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK")
+        }
+        alertController.addAction(okAction)
     }
 
     func onTextFieldChanged(textField: UITextField) {
@@ -124,6 +140,9 @@ class TipViewController: UIViewController {
         // Show tip and total bill
         labelTipResult.text = formatCurrency(inputNum: tipAmount)
         labelTotalBill.text = formatCurrency(inputNum: totalBill)
+        if isAlertEnable && tipAmount > Float(alertLimiation) {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
     func formatCurrency(inputNum: Float) -> String {

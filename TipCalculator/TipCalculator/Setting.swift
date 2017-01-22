@@ -20,4 +20,7 @@ class Setting {
     static let BRIGHT_COLOR = UIColor.white
     static let DATE_STORE_KEY = "save-time"
     static let HISTORY_VALUE_KEY = "history-value"
+    static let ALERT_ENABLE_KEY = "alert_enable"
+    static let ALERT_LIMITATION_KEY = "alert_value"
+    static let ALERT_LIMIATION_DEFAULT_VALUE = 999999999
 }
