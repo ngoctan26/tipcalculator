@@ -60,6 +60,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		86347F6C1E4B8240003843B2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				86B0E0991DFD466000F5BA58 /* TipViewController.swift */,
+				86B0E09B1DFD46BF00F5BA58 /* SettingViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		86B0E07A1DFD3E5A00F5BA58 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +88,7 @@
 		86B0E0851DFD3E5A00F5BA58 /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				86347F6C1E4B8240003843B2 /* Controller */,
 				862D1AAA1E1AB43200C75DA1 /* Model */,
 				86B0E09D1DFD46C800F5BA58 /* Utils */,
 				86B0E0981DFD461C00F5BA58 /* View */,
@@ -94,8 +104,6 @@
 		86B0E0981DFD461C00F5BA58 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				86B0E0991DFD466000F5BA58 /* TipViewController.swift */,
-				86B0E09B1DFD46BF00F5BA58 /* SettingViewController.swift */,
 				860E7DE21E1754780057A25B /* SettingThemeTableViewCell.swift */,
 				860E7DE41E1769780057A25B /* PercentTableViewCell.swift */,
 				868A91C01E34EECC006D1D5A /* AlertEnableTableViewCell.swift */,
