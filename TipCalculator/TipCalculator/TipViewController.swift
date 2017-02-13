@@ -100,7 +100,7 @@ class TipViewController: UIViewController {
         textFieldInputBill.text = formatNormalNumber(inputNum: 0)
         textFieldInputBill.becomeFirstResponder()
         // Set segment button title
-        textFieldInputBill.keyboardType = UIKeyboardType.numberPad
+        textFieldInputBill.keyboardType = UIKeyboardType.decimalPad
         // Set text field change listener
         textFieldInputBill.addTarget(self, action: #selector(onTextFieldChanged(textField:)), for: UIControlEvents.editingChanged)
     }
@@ -128,11 +128,20 @@ class TipViewController: UIViewController {
         guard let billInputText = textFieldInputBill.text else {
             return
         }
+        // Handle input character is comma
+        if !billInputText.isEmpty {
+            let lastChar = billInputText.characters.last!
+            if lastChar == "," || lastChar == "." {
+                
+                return
+            }
+        }
+        
         // Update screen to 0 value whether current input value is empty
         hanldeAmountInput = billInputText.isEmpty ? "0" : billInputText
         // Update input textField format
-        textFieldInputBill.text = formatNormalNumber(inputNum: Int(hanldeAmountInput)!)
-        let billAmount: Float = Float(hanldeAmountInput)!
+        textFieldInputBill.text = formatNormalNumber(inputNum: formatNumberFromStr(inputStr: hanldeAmountInput))
+        let billAmount: Float = formatNumberFromStr(inputStr: hanldeAmountInput)
         let selectedPercentIndex = segButtonTipPercent.selectedSegmentIndex
         let percent = Float(String(tipPercents[selectedPercentIndex]))
         let tipAmount = billAmount * percent! / 100
@@ -155,10 +164,19 @@ class TipViewController: UIViewController {
         return formatter.string(from: NSNumber(value: inputNum))!
     }
     
-    func formatNormalNumber(inputNum: Int) -> String {
+    func formatNormalNumber(inputNum: Float) -> String {
         let formatter = NumberFormatter()
         formatter.minimumIntegerDigits = 0
+        formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: inputNum))!
+    }
+    
+    func formatNumberFromStr(inputStr: String) -> Float {
+        let number = NumberFormatter().number(from: inputStr)
+        if let number = number {
+            return Float(number.stringValue)!
+        }
+        return 0.0
     }
     
 }
